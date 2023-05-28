@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     "rest_framework.authtoken",
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
     "corsheaders",
     "drf_spectacular",
     "channels",
@@ -177,6 +179,10 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer',
+}
+
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -188,7 +194,8 @@ X_FRAME_OPTIONS = "DENY"
 ACCOUNT_ALLOW_REGISTRATION = True
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_ADAPTER = "users.adapters.AccountAdapter"
 ACCOUNT_FORMS = {"signup": "users.forms.UserSignupForm"}
 SOCIALACCOUNT_ADAPTER = "users.adapters.SocialAccountAdapter"

@@ -19,11 +19,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('', include('my_app.urls')),
+    path("api/", include("config.api_router")),
     path(settings.ADMIN_URL, admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path("api/", include("config.api_router")),
-    path('', include('my_app.urls')),
     path("users/", include("users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
-    path("accounts/", include("allauth.urls")),
+    path('account/', include('dj_rest_auth.urls')),
+    path('account/signup/', include('dj_rest_auth.registration.urls')),
 ]

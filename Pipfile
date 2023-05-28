@@ -25,6 +25,8 @@ django-crispy-forms = "*"
 crispy-bootstrap5 = "*"
 django-redis = "*"
 drf-spectacular = "*"
+dj-rest-auth = "*"
+urllib3 = "==1.26.6"
 
 [dev-packages]
 
