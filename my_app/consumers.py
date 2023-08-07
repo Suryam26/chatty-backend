@@ -146,7 +146,7 @@ class ChatConsumer(JsonWebsocketConsumer):
                 async_to_sync(self.channel_layer.group_send)(
                     notification_group_name,
                     {
-                        "type": "new_message_notification",
+                        "type": "delete_message",
                         "name": self.user.username,
                         "message": MessageSerializer(message).data,
                     },
@@ -235,6 +235,9 @@ class NotificationConsumer(JsonWebsocketConsumer):
         self.send_json(event)
 
     def typing_notification(self, event):
+        self.send_json(event)
+
+    def delete_message(self, event):
         self.send_json(event)
 
 
