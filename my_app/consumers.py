@@ -221,10 +221,11 @@ class NotificationConsumer(JsonWebsocketConsumer):
         )
 
     def disconnect(self, code):
-        async_to_sync(self.channel_layer.group_discard)(
-            self.notification_group_name,
-            self.channel_name,
-        )
+        if self.user.is_authenticated:
+            async_to_sync(self.channel_layer.group_discard)(
+                self.notification_group_name,
+                self.channel_name,
+            )
         return super().disconnect(code)
 
     def new_message_notification(self, event):
